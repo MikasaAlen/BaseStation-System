@@ -1,0 +1,12 @@
+@mixin bg($path) {
+    background-image: url('~@/assets/images/' + $path);
+    background-repeat: no-repeat;
+}
+
+@mixin bgw($path, $width, $height) {
+    width: $width;
+    height: $height;
+    background-image: url('~@/assets/images/' + $path);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}

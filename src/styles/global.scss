@@ -1,0 +1,303 @@
+$white: #ffffff;
+$green: #18be9b;
+@import "~@/styles/public";
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+input:focus {
+	border: 1px solid $green !important;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+	transition: all 0.3s ease;
+}
+.slide-enter,
+.slide-leave-to {
+	transform: translate3d(100%, 0, 0);
+}
+.specialOrderDetail-select {
+	input {
+		width: 105px !important;
+	}
+}
+.common-select {
+	input {
+		width: 135px;
+		height: 35px;
+
+		font-size: 14px;
+		background-color: #f9f9f9;
+		.el-select__caret {
+			background-color: none;
+		}
+		::placeholder {
+			color: #666666;
+			opacity: 1;
+		}
+		:-ms-input-placeholder {
+			color: #666666;
+		}
+		::-ms-input-placeholder {
+			color: #666666;
+		}
+	}
+}
+
+.common-nav-bar {
+	height: 50px;
+	box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.05);
+}
+
+.common-content {
+	height: calc(100% - 50px);
+	padding: 15px;
+	background-color: #f6f6f6;
+
+	.common-content-child {
+		width: 100%;
+		height: 100%;
+		box-shadow: 8px 8px 16px 0px rgba(155, 155, 155, 0.28);
+		border-radius: 2px;
+		border: solid 1px #edeff3;
+	}
+}
+
+* {
+	-webkit-border-horizontal-spacing: 0;
+	-webkit-border-vertical-spacing: 0;
+}
+
+.common-table {
+	.common-table-header {
+		background-color: #e6e6e6;
+		height: 35px;
+		font-weight: bold;
+		font-size: 14px;
+		color: #333333;
+
+		th {
+			border-bottom: none !important;
+			padding: 0;
+			background-color: #e6e6e6;
+		}
+	}
+
+	tbody {
+		font-size: 14px;
+		color: #333333;
+
+		tr {
+			height: 35px;
+
+			td {
+				border-bottom: none !important;
+				padding: 0;
+			}
+		}
+	}
+
+	.el-table__row--striped {
+		background-color: #f6f5f5;
+	}
+}
+
+.task-table {
+	.task-table-header {
+		background-color: #e6e6e6;
+		height: 40px;
+		font-weight: bold;
+		font-size: 14px;
+		color: #333333;
+
+		th {
+			border-bottom: none !important;
+			padding: 0;
+			background-color: #e6e6e6;
+		}
+	}
+
+	tbody {
+		font-size: 14px;
+		color: #333333;
+
+		tr {
+			height: 40px;
+
+			td {
+				border-bottom: none !important;
+				padding: 0;
+			}
+		}
+	}
+
+	.el-table__row--striped {
+		background-color: #f6f5f5;
+	}
+}
+
+.common-icon {
+	display: inline-block;
+}
+
+//弹出窗标题层样式
+.common-dialogTop {
+	.header {
+		width: 100%;
+		padding: 5px 20px 15px 20px;
+		display: flex;
+		justify-content: space-between;
+		border-bottom: #ebebeb 2px solid;
+	}
+	.title {
+		font-size: 16px;
+		border-left: #18be9b 5px solid;
+		padding: 0 8px;
+		height: 20px;
+	}
+	.close {
+		height: 20px;
+		width: 20px;
+		img {
+			height: 20px;
+			width: 20px;
+		}
+	}
+}
+
+.el-popper[x-placement^="bottom"] .popper__arrow {
+	left: 72% !important;
+}
+
+.el-button.el-button--grey {
+	background-color: #f9f9f9 !important;
+	border-radius: 2px 2px 0px 0px;
+	border: solid 1px #e2e2e2;
+	height: 35px;
+	padding: 0 12px;
+}
+
+.el-popover {
+	min-width: 100px !important;
+	border-radius: 4px !important;
+	padding: 0 !important;
+	margin-top: 0 !important;
+}
+
+.el-dialog {
+	width: 558px;
+}
+
+.el-dialog__header {
+	// line-height: 50px;
+	display: flex;
+	align-items: center;
+	padding: 0 20px !important;
+	height: 50px;
+	border-bottom: 2px solid #ebebeb;
+	text-align: left;
+
+	.el-dialog__title {
+		font-size: 14px;
+		color: #666666;
+		padding-left: 10px;
+		border-left: 5px solid #18be9b;
+	}
+
+	.el-dialog__headerbtn {
+		top: 13px;
+		width: 22px;
+		height: 22px;
+		background: url("../assets/close.png") no-repeat;
+		background-size: 22px 22px;
+
+		.el-icon-close:before {
+			content: " ";
+		}
+	}
+}
+.el-date-editor.el-input {
+	width: 163px;
+}
+
+.el-dialog {
+	.el-select {
+		width: 350px;
+	}
+}
+
+.common-input-search {
+	width: 250px;
+	height: 35px !important;
+
+	input {
+		height: 35px !important;
+		background-color: #f9f9f9;
+	}
+
+	i {
+		color: #03bf99;
+		line-height: 35px;
+	}
+
+	.el-input__inner {
+		height: 35px;
+	}
+}
+
+.el-message {
+	&.el-message--success {
+		margin-top: 35vh;
+		background-color: #ffffff;
+		width: 300px;
+		height: 176px;
+		padding: 80px 0 0 0;
+		text-align: center;
+		@include bg("success.png");
+		background-size: 60px 60px;
+		background-position-x: center;
+		background-position-y: 41px;
+		min-width: 300px;
+		box-shadow: 0px -2px 20px 0px rgba(0, 0, 0, 0.16);
+		border: none;
+		transition: none !important;
+		.el-message__content {
+			font-size: 18px;
+			color: #333333;
+		}
+		i {
+			display: none;
+		}
+		p {
+			width: 100%;
+			padding: 10px;
+			line-height: 20px;
+			word-break: break-word;
+		}
+	}
+}
+
+.update-pwd {
+	.el-dialog__body {
+		padding: 20px 20px 0 20px;
+	}
+
+	.el-dialog__footer {
+		padding-top: 0;
+	}
+}

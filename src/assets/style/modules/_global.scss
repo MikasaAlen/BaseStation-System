@@ -1,0 +1,189 @@
+$font-sans: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti, "Microsoft YaHei";
+$primary-color: #1d94f7; //主题色
+$title-color: #333; //标题颜色
+$color: #666; //正文颜色
+$secondary-color: #999; //二级菜单未选中的字体颜色
+$link-color: #1d94f7; //链接颜色
+$error-color: #fe5339; //错误颜色
+$tip-color: #9a9a9a; //提示文字
+$main-bg: #f7f8fa; //正文背景色
+
+$th-bg: #e3e7ed; //表头背景色
+$td-hover-bg: rgba(29, 148, 247, .2); //表格悬浮背景色
+$td-active-bg: #d2eafd; //表格选中行颜色
+$td-stripe-bg: rgba(209, 211, 220, .2); //表格条纹色
+$icon-normal-bg: #9baabd; //表格里操作图标背景色
+$icon-selected-bg: #9a9a9a; //表格里操作图标选中背景色
+
+$page-color: #235fcd; //分页悬浮字体颜色与选中背景色
+
+$divider-bg: #d1d3dc; //分割线、边框线颜色
+
+//待取色
+$blue-color: #1d94f7;
+$yellow-color: #ffba00;
+$orange-color: #ff8d28;
+$red-color: #fe5339;
+$green-color: #28b779;
+$white-color: #ffffff;
+
+//渐变色
+$blue-gradient-color: linear-gradient(270deg, #257aff 0%, #009ffb 100%);
+
+@mixin box-shadow($value...) {
+    -webkit-box-shadow: $value;
+    box-shadow: $value;
+}
+
+// 输入框样式预设
+@mixin input-focus {
+    &:focus {
+        border-color: #1d94f7;
+        outline: 0;
+        @include box-shadow(inset 0px 1px 2px 0px rgba(51, 158, 248, 0.35));
+    }
+}
+
+@mixin input-normal {
+    height: 32px;
+    line-height: 32px;
+    padding-left: 8px;
+    background-color: #fff;
+    border: 1px solid $divider-bg;
+    border-radius: 2px;
+    color: #333;
+    @include input-focus;
+}
+
+@mixin input-error {
+    border-color: #fe5339;
+    @include box-shadow(inset 0px 1px 2px 0px rgba(254, 83, 57, 0.35));
+}
+
+@mixin input-disabled {
+    border-color: $divider-bg;
+    background-color: #e3e7ed;
+    color: #9a9a9a;
+}
+
+// 表格样式预设
+@mixin tb-th {
+    height: 45px;
+    line-height: 45px;
+    background-color: $th-bg;
+    color: #333;
+}
+
+@mixin tb-td {
+    height: 40px;
+    line-height: 40px;
+    background: transparent;
+    color: #666;
+}
+
+//按钮样式预设
+@mixin button-default {
+    min-width: 80px;
+    padding: 0 10px;
+    height: 32px;
+    color: #1d94f7;
+    background-color: #ffffff;
+    border-radius: 2px;
+    border: solid 1px #1d94f7;
+    cursor: pointer;
+    &:hover {
+        @include box-shadow(0px 2px 5px 0px rgba(29, 148, 247, 0.25));
+    }
+    &:active {
+        @include box-shadow(none);
+        opacity: 0.9;
+    }
+}
+
+@mixin button-disbaled {
+    background-color: $divider-bg;
+    border: 0px transparent;
+    opacity: 0.9;
+}
+
+@mixin button-primary {
+    width: 80px;
+    height: 32px;
+    color: #fff;
+    background-color: #1d94f7;
+    border: 0 transparent;
+    border-radius: 2px;
+    cursor: pointer;
+    &:hover {
+        @include box-shadow(0px 2px 5px 0px rgba(29, 148, 247, 0.25));
+    }
+    &:active {
+        @include box-shadow(none);
+        opacity: 0.9;
+    }
+}
+
+@mixin button-important {
+    width: 80px;
+    height: 32px;
+    background-image: linear-gradient(90deg, #235fcd 0%, #113c86 100%);
+    border-radius: 2px;
+    cursor: pointer;
+    &:hover {
+        @include box-shadow(0px 2px 5px 0px rgba(19, 65, 143, 0.25));
+    }
+    &:active {
+        @include box-shadow(none);
+        opacity: 0.9;
+    }
+}
+
+@mixin button-delete {
+    width: 80px;
+    height: 32px;
+    color: #fff;
+    background-color: #fe5339;
+    border: 0 transparent;
+    border-radius: 2px;
+    cursor: pointer;
+    &:hover {
+        @include box-shadow(0px 2px 5px 0px rgba(254, 83, 57, 0.25));
+    }
+    &:active {
+        @include box-shadow(none);
+        opacity: 0.9;
+    }
+}
+
+@mixin scrollbar-diy {
+    /*三角箭头的颜色*/
+    scrollbar-arrow-color: #b9bed1;
+    /*滚动条滑块按钮的颜色*/
+    scrollbar-face-color: #b9bed1;
+    /*滚动条整体颜色*/
+    scrollbar-highlight-color: $white-color;
+    /*滚动条阴影*/
+    scrollbar-shadow-color: $white-color;
+    /*滚动条轨道颜色*/
+    scrollbar-track-color: $white-color;
+    /*滚动条整体部分,必须要设置*/
+    &::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+        background-color: $white-color;
+    }
+    /*滚动条的轨道*/
+    &::-webkit-scrollbar-track {
+        background-color: $white-color;
+    }
+    /*滚动条的滑块按钮*/
+    &::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: #b9bed1;
+    }
+    /*滚动条的上下两端的按钮*/
+    &::-webkit-scrollbar-button {
+        width: 0px;
+        height: 0px;
+    }
+}
