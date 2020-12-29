@@ -88,10 +88,10 @@
 <style lang="scss" scoped>
 
   .login {
-    padding-top: 18vh;
-    background-image: url("../assets/timg.jpeg");
+    padding-top: 20vh;
+    background-image: url("../assets/login-background.png");
     background-size: 100% 100%;
-
+    height: 610px;
     .center-block {
       width: 800px;
       height: 449px;

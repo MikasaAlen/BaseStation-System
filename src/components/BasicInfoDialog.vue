@@ -10,17 +10,17 @@
         <div class="task-info" style="margin-left: 0">
           <div class="left">
             <span class="label">基站名称</span>
-            <span></span>
+            <span>{{taskInfo.baseStationName}}</span>
           </div>
           <div class="right">
             <span class="label">基站编号</span>
-            <span></span>
+            <span>202011300001</span>
           </div>
         </div>
         <div class="task-info" style="margin-left: 0">
           <div class="left">
             <span class="label">基站位置</span>
-            <span></span>
+            <span>{{taskInfo.baseStationAddress}}</span>
             <!-- <span>{{ baseStaAddress }}</span> -->
             <!-- <img src="../../assets/edit.png">
             <el-input v-model="baseStationInfo.bsAddress"></el-input>
@@ -28,7 +28,7 @@
           </div>
           <div class="right">
             <span class="label">任务状态</span>
-            <span></span>
+            <span>{{taskInfo.status}}</span>
           </div>
         </div>
         <el-form-item label="射频仪器" prop="deviceCode">
@@ -91,19 +91,17 @@
           </el-select>
         </el-form-item>
         <el-form-item label="地址" prop="address">
-          <el-input v-model="baseStationInfo.bsAddress"></el-input>
+          <el-input v-model="taskInfo.baseStationAddress"></el-input>
         </el-form-item>
         <el-form-item label="备注" prop="postscript">
-          <el-input v-model="baseStationInfo.remark"></el-input>
+          <el-input v-model="formData.remark"></el-input>
         </el-form-item>
         <el-form-item label="天线离地面高度" prop="aerialHeight">
           <el-input v-model="formData.aerialHeight" type="number"></el-input>
         </el-form-item>
 
         <el-form-item label="检测依据" prop="testingBase">
-          <el-select v-model="testingBase" multiple :collapse-tags="true" size="medium"
-                     :popper-append-to-body="false"
-                     popper-class="selectinfo"
+          <el-select v-model="formData.testingBase" multiple :collapse-tags="true" size="medium"
           >
             <el-option
               style="width: 450px"
@@ -168,12 +166,17 @@
 </template>
 
 <script>
+  import {mapState,mapMutations} from "vuex"
   export default {
     props: ["visible"],
     data() {
       return {
         jzid: "",
         radio:"",
+        flag: {
+          hasPhoto: false,
+          photoFinished: true
+        },
         options: {
           weather: [
             {
@@ -265,72 +268,73 @@
           frequencyRange: "",
           antennaNum: "",
           status: "",
+          remark:"",
           certificationFlag: false,
         },
         testTime: [
           new Date(),
           new Date(new Date().getTime() + 15 * 60 * 1000)
         ],
-        baseStationInfo:[
-          {
-            bsAddress:"浙大城院",
-            remark:"正常",
-          }
 
-        ],
-        flag: {
-          hasPhoto: false,
-          photoFinished: true
-        },
 
 
 
       };
     },
     methods: {
+      ...mapMutations([
+        "addTaskInfo"
+      ]),
 
-      checkInfo() {
-        if(this.BaseStationInfo.length!==0 && this.radio!=="") {
-          let baseStationId = this.BaseStationInfo[this.radio].jzid;
-          this.$http({
-            url: "/rest/detectionData/getDetectionData",
-            method: "get",
-            params: {
-              bsId: baseStationId
-            },
-          })
-            .then(res => {
-
-              if (res.status == 200) {
-                var data = res.data
-                this.$emit("beginTask",data)
-
-              }
-            })
-            .catch(error => {
-              this.$errDialog(error.response.data.msg + "!");
-            });
-        }else {
-          this.$emit("beginTask")
-
-        }
-      },
+      // checkInfo() {
+      //   if(this.BaseStationInfo.length!==0 && this.radio!=="") {
+      //     let baseStationId = this.BaseStationInfo[this.radio].jzid;
+      //     this.$http({
+      //       url: "/rest/detectionData/getDetectionData",
+      //       method: "get",
+      //       params: {
+      //         bsId: baseStationId
+      //       },
+      //     })
+      //       .then(res => {
+      //
+      //         if (res.status == 200) {
+      //           var data = res.data
+      //           this.$emit("beginTask",data)
+      //
+      //         }
+      //       })
+      //       .catch(error => {
+      //         this.$errDialog(error.response.data.msg + "!");
+      //       });
+      //   }else {
+      //     this.$emit("beginTask")
+      //
+      //   }
+      // },
       setTestTime() {
         console.log(Date.now())
       },
       next() {
+        var params={
+          formData: this.formData
+        }
+        // console.log(this.taskInfo)
+        this.addTaskInfo(params)
+        this.$emit("BaseStationInfo",params)
 
       },
-      radioClick(index) {
-        index === this.radio ? this.radio="":this.radio = index
-      },
+      // radioClick(index) {
+      //   index === this.radio ? this.radio="":this.radio = index
+      // },
 
     },
+    computed:{
+      ...mapState([
+        "taskInfo",
+      ])
+    },
     watch: {
-      // "needData.taskId": function () {
-      //   this.radio = "";
-      //   this.$emit("reSetBaseStationInfo")
-      // }
     }
 
   }
@@ -389,7 +393,7 @@
     .el-dialog {
       width: 100%;
       max-width: 1366px;
-      margin-top: calc(50vh - 341px) !important;
+      margin-top: calc(55vh - 341px) !important;
       margin-bottom: 0;
 
       .el-dialog__body {
@@ -424,17 +428,19 @@
 
       .left,
       .right {
-        display: inline-block;
-        width: 50%;
 
         .label {
           color: rgb(176, 176, 176);
           margin-right: 10px;
         }
       }
-
+      .left {
+        display: inline-block;
+        width: 80%;
+      }
       .right {
-        text-align: right;
+        display: inline-block;
+        with:15%;
       }
 
       &:last-of-type {

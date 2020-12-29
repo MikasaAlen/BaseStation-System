@@ -15,6 +15,10 @@ module.exports = {
   entry: {
     app: './src/main.js'
   },
+
+  externals: {
+    'AMap': 'AMap' // 高德地图配置
+  },
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
@@ -29,6 +33,7 @@ module.exports = {
       '@': resolve('src'),
     }
   },
+
   module: {
     rules: [
       {
@@ -69,7 +74,7 @@ module.exports = {
         test: /\.sass$/,
         loaders: ['style', 'css', 'sass']
       }
-    ]
+    ],
   },
   node: {
     // prevent webpack from injecting useless setImmediate polyfill because Vue
@@ -82,5 +87,5 @@ module.exports = {
     net: 'empty',
     tls: 'empty',
     child_process: 'empty'
-  }
+  },
 }

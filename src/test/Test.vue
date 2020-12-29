@@ -1,21 +1,9 @@
 <template>
   <div>
-    <div class="radio">
-      <el-radio-group v-model="radio" v-if="BaseStationInfo">
-        <el-radio :label="index"
-                  v-for="(item,index) in BaseStationInfo"
-                  :key="index"
-        >
-            <span style="margin: 0 5px">{{ item.jcry}}</span>
-            <span style="margin: 0 5px">{{ item.jzmc }}</span>
-            <span style="margin: 0 5px">{{ item.detectionTime }}</span>
-<!--          {{item.jcry}}-->
-<!--          {{item.jzmc}}-->
-<!--          {{item.detectionTime }}-->
-        </el-radio>
-      </el-radio-group>
-    </div>
+    <span @click="drawBackground">点位图</span>
+    <div>
 
+    </div>
   </div>
 
 </template>
@@ -25,25 +13,37 @@
         name: "Test",
       data() {
           return {
-            radio:"1",
-            BaseStationInfo: [
-              {
-                jcry:"wzh",
-                jzmc:"nds",
-                detectionTime:"10:00"
-              },
-              {
-                jcry:"cj",
-                jzmc:"qqq",
-                detectionTime:"19:00"
-              },
-              {
-                jcry:"wxd",
-                jzmc:"dsa",
-                detectionTime:"22:00"
-              },
-            ]
+            layerList:[],
+            background:"/api/maps/202009170001/map-202009170001HZ11-16.png?t=1604046916985"
           }
+      },
+      methods: {
+        drawBackground() {
+          let that = this;
+          console.log(that.background)
+          let source = that.background
+          if (!source.includes('?t=')) {
+            source = `${source}?t=${Date.now()}`
+          }
+          $("#draw-picture-target")
+            .addLayer({
+              name: "background",
+              type: "image",
+              source,
+              x: 300,
+              y: 250,
+              width: 600,
+              height: 500
+            })
+            .drawLayers();
+          this.addLayer(false);
+        },
+        addLayer(isCurve) {
+          this.layerList.push({
+            name: this.layerList.length,
+            isCurve: isCurve
+          });
+        },
       }
     }
 </script>
