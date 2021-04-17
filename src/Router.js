@@ -5,7 +5,7 @@ import Order from "./components/Order"
 import User from "./components/User"
 import Login from "./components/Login"
 import OrderDetail from "./components/OrderDetail"
-import test from "./components/test"
+// import test from "./components/test"
 
 
 const routers = [
@@ -35,19 +35,15 @@ const routers = [
       {
         path:"User",
         component:User,
-      },
-      {
-        path:"test",
-        component:test,
       }
+
     ]
    },
   {
     path:"/",
     component:Login,
 
-  }
-
-]
+  },
+];
 
 export default routers

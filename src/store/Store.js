@@ -1,12 +1,24 @@
 import Vuex from 'vuex'
 import vue from "vue"
 
-vue.use(Vuex)
+vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     orderInfo: {},
     taskInfo:{},
+    userInfo:[
+      {
+        id:"1",
+        userName:"Mikasa",
+        pwd:"www5050796",
+      },
+      {
+        id:"2",
+        userName:"chenyun",
+        pwd:"123123123",
+      }
+    ],
     testPoint: [
       { code: "1",
         description:"浙大城院",
@@ -78,7 +90,42 @@ export default new Vuex.Store({
           towerType:"自立铁塔",
           aerialHeight:"30m",
         },
-      ]
+      ],
+    tableUser:[
+      {
+        unitName: '成功软件有限公司',
+        zipCode: '310000',
+        phone: '15988879470',
+        contact: '吴智宏',
+        address: '西湖广告大厦',
+        remark: '无',
+        province: "浙江省",
+        city: "杭州市",
+        area: "西湖区",
+      }
+    ],
+    tableOrder:[
+      {
+        orderId:"202011240001",
+        startTime:"2020-11-29 ",
+        finishTime:"2020-11-30 ",
+        status:"待检测",
+        post:"成功软件有限公司",
+        action:"",
+      }
+    ],
+    tableInstrument:[
+      {
+        instrumentName: '射频综合场强仪',
+        standard: 'NBM550',
+        frequency: '0.1MHz～3000MHz',
+        probeModel: 'EF0391',
+        manufacturer: '德国nadar',
+        applianceNumber: 'B1218/A1288',
+        verificationUnit:'上海市计量测试委员会',
+        verificationNumber:'2019F33-10-1901451',
+      },
+    ],
   },
   mutations: {
     setOrder: (state,data) => {
@@ -88,15 +135,30 @@ export default new Vuex.Store({
       Object.assign(state.taskInfo,data)
     },
     addTaskInfo:(state,data)=>{
-      var object={}
-      Object.assign(object,state.taskInfo,data)
-      Object.assign(state.taskInfo,object)
-    }
-  }
-  ,
+      var object={};
+      Object.assign(object,state.taskInfo,data);
+      Object.assign(state.taskInfo,object);
+    },
+    addUserInfo:(state,data)=>{
+      var object={};
+      Object.assign(object,state.tableUser,data);
+      // Object.assign(state.tableUser,object)
+      state.tableUser.push(object);
+    },
+    addOrderInfo:(state,data)=>{
+      var object={};
+      Object.assign(object,state.tableOrder,data);
+      state.tableOrder.push(object);
+    },
+    addInstrumentInfo:(state,data)=>{
+      var object={};
+      Object.assign(object,state.tableInstrument,data);
+      state.tableInstrument.push(object);
+    },
+  },
   actions: {
     getOrderDetail:(state)=>{
 
-    }
-  }
+    },
+  },
 });

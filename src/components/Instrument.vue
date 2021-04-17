@@ -3,7 +3,7 @@
     <div class="operate">
       <div class="drop">
         <div class="searchBox">
-          <img src="../assets/search.png" @click="goSearch()">
+          <img src="../assets/search.png" alt="search" @click="goSearch()">
           <el-input v-model="searchTest" placeholder="仪器名称" class="find">
           </el-input>
         </div>
@@ -11,14 +11,14 @@
       <div class="buttonArray">
         <div class="addOrder">
           <button @click="addNew()">
-            <img src="../assets/addNew.png">
-            <div>新增</div>
+            <img src="../assets/addNew.png" alt="addNew">
+            <div><p>新增</p></div>
           </button>
         </div>
         <div class="batchPrint">
           <button @click="judgeCanDownload()">
-            <img src="../assets/report.png">
-            <div>批量下载</div>
+            <img src="../assets/report.png" alt="report">
+            <div><p>批量下载</p></div>
           </button>
         </div>
       </div>
@@ -53,7 +53,7 @@
               <el-button
                 @click="startTask(scope.row,scope.$index)"
                 class="table-button"
-              ><img src="../assets/watch.png" >查看</el-button>
+              ><img src="../assets/watch.png" alt="watch">查看</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -82,6 +82,7 @@
 <script>
   import AddInstrumentDialog from "./AddInstrumentDialog"
   import InstrumentDetail from "./InstrumentDetail"
+  import {mapMutations, mapState} from "vuex";
 
   export default {
     components: {
@@ -100,18 +101,7 @@
 
         dialogFormVisible:false,
         dialogDetailVisible:false,
-        tableInstrument:[
-          {
-            instrumentName: '射频综合场强仪',
-            standard: 'NBM550',
-            frequency: '0.1MHz～3000MHz',
-            probeModel: 'EF0391',
-            manufacturer: '德国nadar',
-            applianceNumber: 'B1218/A1288',
-            verificationUnit:'上海市计量测试委员会',
-            verificationNumber:'2019F33-10-1901451',
-          },
-        ],
+
         needData:{},
         needEdit: {},
         tipType: "",
@@ -130,16 +120,16 @@
         clientHeight: 0
       }
     },
-    computed: {
-
-    },
     methods: {
+      ...mapMutations([
+        "addInstrumentInfo"
+      ]),
       addInstrument(data) {
-        this.tableInstrument.push(data)
+        this.tableInstrument.push(data);
         this.dialogFormVisible = false
       },
       startTask(row) {
-        this.needData = row
+        this.needData = row;
         this.dialogDetailVisible = true
         // this.$forceUpdate()
       },
@@ -355,17 +345,20 @@
     },
     watch: {
       "this.needData":function () {
-        deep: true,
-        this.$forceUpdate()
-        console.log(this.needData)
-        immediate:true
+        this.$forceUpdate();
+        console.log(this.needData);
       }
     },
     mounted() {
 
       // this.init();
       // this.getJcjgInfo();
-    }
+    },
+    computed:{
+      ...mapState([
+        "tableInstrument"
+      ])
+    },
   }
 </script>
 
@@ -403,7 +396,6 @@
       display: flex;
       flex-direction: row-reverse;
       align-items: center;
-      background-color: #ffffff;
       border-radius: 2px;
       border: #e2e2e2 1px solid;
       background-color: #fcfcfc;
@@ -450,7 +442,7 @@
         button {
           width: 70px;
           background-color: #60cd59;
-          box-shadow: 2px 2px 9px 0px rgba(96, 205, 89, 0.5);
+          box-shadow: 2px 2px 9px 0 rgba(96, 205, 89, 0.5);
 
           div {
             padding-left: 4px;
@@ -463,8 +455,7 @@
         button {
           width: 100px;
           background-color: #18be9b;
-          box-shadow: 2px 2px 9px 0px rgba(24, 190, 155, 0.5);
-
+          box-shadow: 2px 2px 9px 0 rgba(24, 190, 155, 0.5);
           div {
             padding-left: 4px;
 

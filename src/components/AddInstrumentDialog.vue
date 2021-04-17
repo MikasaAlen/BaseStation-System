@@ -66,6 +66,7 @@
 
 <script>
   import VDistpicker from 'v-distpicker'
+
   export default {
     props: ['visible', 'title'],
     components: {
@@ -160,8 +161,8 @@
       //
       // },
       addInstrument() {
-        var item = {}
-        Object.assign(item,this.formData)
+        var item = {};
+        Object.assign(item,this.formData);
         this.$emit("addInstrument",item)
       },
     }
@@ -196,7 +197,7 @@
     .el-button--primary {
       width: 90px;
       height: 36px;
-      box-shadow: 2px 2px 9px 0px rgba(24, 190, 155, 0.5);
+      box-shadow: 2px 2px 9px 0 rgba(24, 190, 155, 0.5);
       border-radius: 2px;
       margin-left: 0;
     }
@@ -207,7 +208,6 @@
       label {
         width: 100%;
         display: inline-block;
-        display: table;
         margin-bottom: 10px;
 
         .front {

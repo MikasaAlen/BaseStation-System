@@ -13,10 +13,6 @@
               <el-menu-item index="/Task" @click="setMenuClicked('/Task')">选项1</el-menu-item>
               <el-menu-item index="/Task/2">选项2</el-menu-item>
             </el-menu-item-group>
-            <el-submenu index="/Task/3">
-              <template slot="title">选项3</template>
-              <el-menu-item index="/Task/3-1">选项3-1</el-menu-item>
-            </el-submenu>
           </el-submenu>
           <el-submenu index="2">
             <template slot="title"><i class="el-icon-menu"></i>仪器管理</template>
@@ -24,21 +20,13 @@
               <el-menu-item index="/Instrument" @click="setMenuClicked('/Instrument')">选项1</el-menu-item>
               <el-menu-item index="/Instrument/2">选项2</el-menu-item>
             </el-menu-item-group>
-            <el-submenu index="/Instrument/3">
-              <template slot="title">选项3</template>
-              <el-menu-item index="/Instrument/3-1">选项3-1</el-menu-item>
-            </el-submenu>
           </el-submenu>
           <el-submenu index="3">
             <template slot="title"><i class="el-icon-menu"></i>订单管理</template>
             <el-menu-item-group>
               <el-menu-item index="/Order" @click="setMenuClicked('/Order')">选项1</el-menu-item>
-              <el-menu-item index="/Order/2" @click="setMenuClicked('/test')">选项2</el-menu-item>
+              <el-menu-item index="/Order/2">选项2</el-menu-item>
             </el-menu-item-group>
-            <el-submenu index="/Order/3">
-              <template slot="title">选项3</template>
-              <el-menu-item index="/Order/3-1">选项3-1</el-menu-item>
-            </el-submenu>
           </el-submenu>
           <el-submenu index="4">
             <template slot="title"><i class="el-icon-menu"></i>用户管理</template>
@@ -46,10 +34,6 @@
               <el-menu-item index="/User" @click="setMenuClicked('/User')">选项1</el-menu-item>
               <el-menu-item index="/User/2">选项2</el-menu-item>
             </el-menu-item-group>
-            <el-submenu index="/User/3">
-              <template slot="title">选项3</template>
-              <el-menu-item index="/User/3-1">选项3-1</el-menu-item>
-            </el-submenu>
           </el-submenu>
         </el-menu>
       </el-aside>
@@ -60,7 +44,7 @@
             <i class="icon-down"></i>
           </a>
           <el-dropdown szie="mini" placement="bottom-start" trigger="click">
-            <span class="el-dropdown"><img class="user-pic" src="../assets/images.jpeg" ></span>
+            <span class="el-dropdown"><img class="user-pic" src="../assets/images.jpeg" alt="user-pic"></span>
             <el-dropdown-menu class="for-user" slot="dropdown">
               <el-dropdown-item @click.native="passwordChange(true)">修改密码</el-dropdown-item>
               <el-dropdown-item @click.native="exit">退出</el-dropdown-item>
@@ -103,7 +87,7 @@
       setMenuClicked(path) {
 
         if(this.$route.fullPath.split("/")[2]===path.split("/")[1]) {
-          return
+
         }else {
           this.$router.push("/Home"+path)
         }
@@ -112,7 +96,7 @@
         this.updatePWDVisible = bool
       },
       NewPWD(data) {
-        this.password = data
+        this.password = data;
         this.updatePWDVisible = false
       },
     },
@@ -125,13 +109,6 @@
     width: 100%;
     height: auto;
     margin: 0;
-  }
-  .el-header {
-    background-color: #B3C0D1;
-    color: #333;
-    line-height: 60px;
-    width: 1222px;
-    text-align: right;
   }
   .home-logo-container {
     background-image: url("../assets/bgc.jpeg");

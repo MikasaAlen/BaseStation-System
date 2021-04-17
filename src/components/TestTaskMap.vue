@@ -16,15 +16,15 @@
 <script>
   export default{
     data() {
-      const that = this
+      const that = this;
       return{
         zoom: 12,
 // 默认中心点
-        center: [116.40,39.90],
+        center: [120.15626,30.32507],
 // 标记点
         markers: [
 // 标记点位置
-          { position: [116.40,39.90]}
+          { position: [120.15626,30.32507]}
         ],
 // 当前地图的插件
         plugin: [{
@@ -44,7 +44,7 @@
             init(o) {
               // o 是高德地图定位插件实例
               o.getCurrentPosition((status, result) => {
-                console.log(result)
+                console.log(result);
                 if (result && result.position) {
                   // 将当前经纬度给中心点
                   that.center = [result.position.lng, result.position.lat];

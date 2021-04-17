@@ -55,7 +55,7 @@
         <el-button
           @click="flag.showAddDialog = true"
           type="success"
-          style="position: absolute; right: 20px; top: 16px; width: 70px; height: 36px; padding: 0;background-color: #60cd59;box-shadow: 2px 2px 9px 0px rgba(96, 205, 89, 0.5);"
+          style="position: absolute; right: 20px; top: 16px; width: 70px; height: 36px; padding: 0;background-color: #60cd59;box-shadow: 2px 2px 9px 0 rgba(96, 205, 89, 0.5);"
         >+ 新增</el-button>
       </div>
       <el-table
@@ -95,15 +95,14 @@
 
 <script>
   import AddCustomerInformationDialog from "../components/AddCustomerInformationDialog"
+  import {mapState,mapMutations} from "vuex"
+
   export default {
     components: {
       AddCustomerInformationDialog,
     },
     data() {
       return {
-        tableUser:[
-
-        ],
         provinceList:[
 
         ],
@@ -124,52 +123,51 @@
         },
       }
     },
+    computed:{
+      ...mapState([
+        "tableUser",
+      ])
+    },
     methods: {
+      ...mapMutations([
+        "addUserInfo",
+      ]),
       updateUserInfo(data) {
         var item = {};
         Object.assign(item,data.placeholders,data.formData);
-        this.tableUser.push(item);
-        // console.log(this.tableData)
+        this.addUserInfo(item);
         this.flag.showAddDialog = false
-
       }
     }
   }
 </script>
 <style scoped>
-  .el-main {
-    display: block;
-    font-size: 14px;
-    color: #000000;
-    box-shadow: 8px 8px 16px 0px rgba(155, 155, 155, 0.28);
-    border-radius: 2px;
-    border: solid 1px #edeff3;
-  }
+
   .customer-info-header {
     position: relative;
     height: 65px;
     line-height: 65px;
 
-    .county-selector {
-      width: 135px;
-      margin-right: 10px;
-    }
+    /*.county-selector {*/
+    /*  width: 135px;*/
+    /*  margin-right: 10px;*/
+    /*}*/
 
-    .city-selector {
-      width: 135px;
-      margin-right: 10px;
-    }
+    /*.city-selector {*/
+    /*  width: 135px;*/
+    /*  margin-right: 10px;*/
+    /*}*/
   }
-  .table-button{
+  /*.table-button{*/
 
-    font-size: 14px;
-    color: #ffffff;
-    background-color: #66b1ff;
-    border: none;
-    padding: 4px 7px;
-    span {
-      vertical-align: text-top;
-    }
-  }
+  /*  font-size: 14px;*/
+  /*  color: #ffffff;*/
+  /*  background-color: #66b1ff;*/
+  /*  border: none;*/
+  /*  padding: 4px 7px;*/
+  /*  span {*/
+  /*    vertical-align: text-top;*/
+  /*  }*/
+  /*}*/
 </style>
 

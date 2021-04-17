@@ -39,26 +39,26 @@
             <div class="searchBox">
               <el-input v-model="searchOrderName" placeholder="基站名称" class="find">
               </el-input>
-              <img src="../assets/search.png" >
+              <img src="../assets/search.png" alt="search">
             </div>
           </div>
           <div class="searchContain">
             <div class="searchBox">
               <el-input v-model="searchName" placeholder="委托单位" class="find">
               </el-input>
-              <img src="../assets/search.png" >
+              <img src="../assets/search.png" alt="search">
             </div>
           </div>
           <div class="searchContain">
             <div class="searchBox">
               <el-input v-model="searchPosi" placeholder="所属区县" class="find">
               </el-input>
-              <img src="../assets/search.png" >
+              <img src="../assets/search.png" alt="search">
             </div>
           </div>
           <div class="addOrder" >
             <button @click="OrderDetailVisible = true">
-              <div>+ 新增</div>
+              <div><p>+ 新增</p></div>
             </button>
           </div>
         </div>
@@ -103,14 +103,6 @@
     components: {AddOrderDialog},
     data() {
       return {
-        tableOrder:[{
-          orderId:"202011240001",
-          startTime:"2020-11-29 ",
-          finishTime:"2020-11-30 ",
-          status:"待检测",
-          post:"成功软件有限公司",
-          action:"",
-        }],
         stateOption:[],
         pageInfo: {
           pageSize: 13,
@@ -129,30 +121,29 @@
     },
     methods: {
       ...mapMutations([
-        "setOrder"
+        "setOrder","addOrderInfo"
       ]),
-      startTask(row,index) {
-        this.setOrder(row)
-
+      startTask(row) {
+        this.setOrder(row);
         this.$router.push("/Home/Order/OrderDetail")
       },
       addOrder(data) {
-        var item = {}
-        Object.assign(item,data.form,data.placeholders)
+        var item = {};
+        Object.assign(item,data.form,data.placeholders);
         let params= {
             orderId:item.orderId,
             startTime: item.dateFir,
             finishTime: item.planDoneDate,
             post: item.selectCompany,
             status: "未开始"
-        }
-        this.tableOrder.push(params)
-        this.OrderDetailVisible = false
+        };
+        this.tableOrder.push(params);
+        this.OrderDetailVisible = false;
       }
     },
     computed:{
       ...mapState([
-        "orderInfo",
+        "orderInfo","tableOrder"
       ])
     },
   }
@@ -164,7 +155,7 @@
     height: 100%;
     background-color: #ffffff;
     padding: 15px 0 5px 0;
-    box-shadow: 8px 8px 16px 0px rgba(155, 155, 155, 0.28);
+    box-shadow: 8px 8px 16px 0 rgba(155, 155, 155, 0.28);
     border-radius: 2px;
     border: solid 1px #edeff3;
 
@@ -248,7 +239,7 @@
         width: 70px;
         border: 0;
         background-color: #60cd59;
-        box-shadow: 2px 2px 9px 0px rgba(96, 205, 89, 0.5);
+        box-shadow: 2px 2px 9px 0 rgba(96, 205, 89, 0.5);
         color: #ffffff;
         display: flex;
         align-items: center;
